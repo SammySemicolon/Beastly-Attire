@@ -1,7 +1,14 @@
 package com.sammy.beastly_attire;
 
+import com.sammy.beastly_attire.init.BAItems;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.RegistryObject;
+import top.theillusivec4.curios.api.CuriosApi;
 
 import java.util.*;
 import java.util.function.Predicate;
@@ -12,6 +19,14 @@ import static com.sammy.beastly_attire.BeastlyAttireMod.MODID;
 
 public class BeastlyAttireHelper
 {
+    public static boolean isCurio(ItemStack curio)
+    {
+        return CuriosApi.getCuriosHelper().getCurio(curio).isPresent();
+    }
+    public static boolean hasCurioEquipped(LivingEntity entity, RegistryObject<Item> curio)
+    {
+        return CuriosApi.getCuriosHelper().findEquippedCurio(curio.get(), entity).isPresent();
+    }
     public static boolean areWeOnClient(World world)
     {
         return world.isRemote;

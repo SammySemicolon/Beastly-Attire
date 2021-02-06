@@ -10,6 +10,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import static com.sammy.beastly_attire.init.BAItems.ITEMS;
 import static com.sammy.beastly_attire.init.Registries.*;
 
 @Mod("beastly_attire")
@@ -23,7 +24,9 @@ public class BeastlyAttireMod
         IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
         ENCHANTMENTS.register(modBus);
         BLOCKS.register(modBus);
-        BAItems.ITEMS.register(modBus);
+        SOUNDS.register(modBus);
+        CONTAINERS.register(modBus);
+        ITEMS.register(modBus);
         TILE_ENTITIES.register(modBus);
         ENTITY_TYPES.register(modBus);
         EFFECTS.register(modBus);

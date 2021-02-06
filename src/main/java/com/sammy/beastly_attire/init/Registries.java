@@ -1,17 +1,30 @@
 package com.sammy.beastly_attire.init;
 
+import com.sammy.beastly_attire.client.gui.PaccContainer;
+import com.sammy.beastly_attire.client.gui.PaccGui;
 import net.minecraft.block.Block;
+import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.EntityType;
+import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.particles.ParticleType;
 import net.minecraft.potion.Effect;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.SoundEvent;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.common.extensions.IForgeContainerType;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.DistExecutor;
+import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.IForgeRegistry;
 
 import static com.sammy.beastly_attire.BeastlyAttireMod.MODID;
-
+@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD, modid = MODID)
 public class Registries
 {
     //temporary class, disregard.
@@ -22,4 +35,15 @@ public class Registries
     public static final DeferredRegister<Effect> EFFECTS = DeferredRegister.create(ForgeRegistries.POTIONS, MODID);
     public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.ENTITIES, MODID);
     public static final DeferredRegister<SoundEvent> SOUNDS = DeferredRegister.create(ForgeRegistries.SOUND_EVENTS, MODID);
+    public static final DeferredRegister<ContainerType<?>> CONTAINERS = DeferredRegister.create(ForgeRegistries.CONTAINERS, MODID);
+    
+    public static final RegistryObject<ContainerType<PaccContainer>> PACC_CONTAINER = CONTAINERS.register("pacc_contanier", () -> IForgeContainerType.create(PaccContainer::makeContainer));
+
+    @SubscribeEvent
+    public static void registerScreenFactory(FMLClientSetupEvent event)
+    {
+        DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
+            ScreenManager.registerFactory(PACC_CONTAINER.get(), PaccGui::new);
+        });
+    }
 }
