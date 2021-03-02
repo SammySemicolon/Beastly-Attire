@@ -11,11 +11,14 @@
   "item.beastly_attire.hair_flower": "Hair Flower",
   "item.beastly_attire.head_flower": "Head Flower",
   "item.beastly_attire.headphones": "Headphones",
-  "item.beastly_attire.mash": "Mash",
+  "item.beastly_attire.mask": "Mask",
   "item.beastly_attire.moustache": "Moustache",
+  "item.beastly_attire.pacc": "Pacc",
   "item.beastly_attire.rocket_boots": "Rocket Boots",
   "item.beastly_attire.skull_shoulder": "Skull Shoulder",
   "item.beastly_attire.test_item": "Test Item",
   "item.beastly_attire.wizard_hat": "Wizard Hat",
+  "item.beastly_attire.wizard_hat_again": "Wizard Hat Again",
+  "item.beastly_attire.wizard_robes": "Wizard Robes",
   "itemGroup.beastly_attire": "Beastly Attire"
 }

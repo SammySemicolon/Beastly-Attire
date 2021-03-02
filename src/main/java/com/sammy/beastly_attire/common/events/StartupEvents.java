@@ -1,22 +1,24 @@
 package com.sammy.beastly_attire.common.events;
 
-import com.sammy.beastly_attire.client.gui.PaccGui;
-import com.sammy.beastly_attire.init.BAItems;
-import net.minecraft.client.gui.ScreenManager;
-import net.minecraft.inventory.container.ContainerType;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.event.RegistryEvent;
+import com.sammy.beastly_attire.init.Registries;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.InterModComms;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
-import net.minecraftforge.registries.IForgeRegistry;
 import top.theillusivec4.curios.api.SlotTypeMessage;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class StartupEvents
 {
+    
+    @SubscribeEvent
+    public static void registerKeybind(FMLClientSetupEvent event)
+    {
+        ClientRegistry.registerKeyBinding(Registries.bodyStrapKeybind);
+        
+    }
     @SubscribeEvent
     public static void registerCurios(InterModEnqueueEvent event)
     {

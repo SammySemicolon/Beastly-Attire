@@ -15,25 +15,24 @@ public class CatEarsModel<T extends LivingEntity> extends BipedModel<T>
 	
 	public CatEarsModel() {
 		super(1);
-		textureWidth = 32;
-		textureHeight = 32;
+		textureWidth = 16;
+		textureHeight = 16;
 
 		bothEars = new ModelRenderer(this);
 		bothEars.setRotationPoint(0.0F, 0.0F, 0.0F);
 		
-		ModelRenderer leftEar = new ModelRenderer(this);
-		leftEar.setRotationPoint(0.0F, 0.0F, 0.0F);
-		bothEars.addChild(leftEar);
-		setRotationAngle(leftEar, -0.1309F, 0.0F, -0.0873F);
-		leftEar.setTextureOffset(0, 0).addBox(4.3439F, -11.0465F, -2.8619F, 1.0F, 5.0F, 4.0F, -0.1F, true);
-		leftEar.setTextureOffset(0, 9).addBox(4.3439F, -11.0465F, -2.8619F, 1.0F, 5.0F, 4.0F, 0.05F, true);
+		ModelRenderer Headgear1 = new ModelRenderer(this);
+		Headgear1.setRotationPoint(0.0F, 0.0F, 0.0F);
+		setRotationAngle(Headgear1, 0.0F, 0.0F, -0.4363F);
+		Headgear1.setTextureOffset(0, 4).addBox(-0.8159F, -11.3959F, 0.0F, 4.0F, 4.0F, 0.0F, 0.01F, false);
 		
-		ModelRenderer rightEar = new ModelRenderer(this);
-		rightEar.setRotationPoint(0.0F, 0.0F, 0.0F);
-		bothEars.addChild(rightEar);
-		setRotationAngle(rightEar, -0.1309F, 0.0F, 0.0873F);
-		rightEar.setTextureOffset(0, 0).addBox(-5.3439F, -11.0465F, -2.8619F, 1.0F, 5.0F, 4.0F, -0.1F, false);
-		rightEar.setTextureOffset(0, 9).addBox(-5.3439F, -11.0465F, -2.8619F, 1.0F, 5.0F, 4.0F, 0.05F, false);
+		ModelRenderer Headgear2 = new ModelRenderer(this);
+		Headgear2.setRotationPoint(0.0F, 0.0F, 0.0F);
+		setRotationAngle(Headgear2, 0.0F, 0.0F, 0.4363F);
+		Headgear2.setTextureOffset(0, 0).addBox(-3.1841F, -11.3959F, 0.0F, 4.0F, 4.0F, 0.0F, 0.01F, false);
+	
+		bothEars.addChild(Headgear1);
+		bothEars.addChild(Headgear2);
 	}
 	
 	@Override
