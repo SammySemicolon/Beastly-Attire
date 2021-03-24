@@ -2,12 +2,13 @@ modLoader="javafml"
 loaderVersion="[33,)"
 license="All rights reserved"
 [[mods]]
-modId="backpack_mod"
+modId="beastly_attire"
 version="${file.jarVersion}"
-displayName="Backpack Mod"
+displayName="Beastly Attire"
+logoFile="beastly_attire.png"
 credits='''The Minecraft Modding Discord and everyone there.
 Its an amazing place full of a ton of amazing people, this mod wouldnt be possible without them.'''
-authors="Sammy"
+authors="Radio Silence"
 description='''
 Description goes here
 '''
