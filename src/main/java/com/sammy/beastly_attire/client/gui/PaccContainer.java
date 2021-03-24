@@ -2,12 +2,14 @@ package com.sammy.beastly_attire.client.gui;
 
 import com.sammy.beastly_attire.BeastlyAttireHelper;
 import com.sammy.beastly_attire.init.Registries;
-import com.sammy.beastly_attire.systems.inventory.ContainerInventory;
-import net.minecraft.entity.MobEntity;
+import com.sammy.beastly_attire.network.NetworkManager;
+import com.sammy.beastly_attire.network.packets.CPacketScrollCopy;
+import com.sammy.beastly_attire.network.packets.SPacketScrollCopy;
+import com.sammy.beastly_attire.systems.inventory.ItemInventory;
+import com.sammy.beastly_attire.systems.inventory.ItemSlot;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
@@ -21,10 +23,6 @@ import top.theillusivec4.curios.api.type.inventory.ICurioStacksHandler;
 import top.theillusivec4.curios.api.type.inventory.IDynamicStackHandler;
 import top.theillusivec4.curios.common.inventory.CosmeticCurioSlot;
 import top.theillusivec4.curios.common.inventory.CurioSlot;
-import top.theillusivec4.curios.common.inventory.container.CuriosContainer;
-import top.theillusivec4.curios.common.network.NetworkHandler;
-import top.theillusivec4.curios.common.network.client.CPacketScroll;
-import top.theillusivec4.curios.common.network.server.SPacketScroll;
 
 import javax.annotation.Nonnull;
 import java.util.Iterator;
@@ -55,7 +53,7 @@ public class PaccContainer extends Container
         super(Registries.PACC_CONTAINER.get(), windowId);
     
         this.box = box;
-        ContainerInventory inventory = create(box);
+        ItemInventory inventory = create(box);
         this.player = playerInv.player;
         this.curiosHandler = CuriosApi.getCuriosHelper().getCuriosHandler(this.player);
         this.isLocalWorld = this.player.world.isRemote;
@@ -65,7 +63,7 @@ public class PaccContainer extends Container
             for (int j = 0; j < 6; ++j)
             {
                 int index = i * 6 + j;
-                addSlot(new Slot(inventory, index, 62 + j * 18, 26 + i * 18)
+                addSlot(new ItemSlot(inventory, index, 62 + j * 18, 26 + i * 18)
                 {
                     @Override
                     public boolean isItemValid(@Nonnull ItemStack stack)
@@ -158,7 +156,7 @@ public class PaccContainer extends Container
                     {
                         if (!this.isLocalWorld)
                         {
-                            NetworkHandler.INSTANCE.send(PacketDistributor.PLAYER.with(() -> (ServerPlayerEntity) this.player), new SPacketScroll(this.windowId, indexIn));
+                            NetworkManager.INSTANCE.send(PacketDistributor.PLAYER.with(() -> (ServerPlayerEntity) this.player), new SPacketScrollCopy(this.windowId, indexIn));
                         }
                         
                         this.lastScrollIndex = indexIn;
@@ -205,15 +203,15 @@ public class PaccContainer extends Container
             {
                 if (this.isLocalWorld)
                 {
-                    NetworkHandler.INSTANCE.send(PacketDistributor.SERVER.noArg(), new CPacketScroll(this.windowId, j));
+                    NetworkManager.INSTANCE.send(PacketDistributor.SERVER.noArg(), new CPacketScrollCopy(this.windowId, j));
                 }
                 
             }
         });
     }
-    public static ContainerInventory create(ItemStack stack)
+    public static ItemInventory create(ItemStack stack)
     {
-        return new ContainerInventory(stack, 18, 1);
+        return new ItemInventory(stack, 18, 1);
     }
     public static PaccContainer makeContainer(int windowId, PlayerInventory inv, PacketBuffer buf)
     {

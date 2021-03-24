@@ -4,6 +4,7 @@ import com.sammy.beastly_attire.BeastlyAttireHelper;
 import com.sammy.beastly_attire.BeastlyAttireMod;
 import com.sammy.beastly_attire.init.BAItems;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.passive.SquidEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -11,7 +12,10 @@ import net.minecraft.item.MusicDiscItem;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.Biomes;
 import net.minecraftforge.event.entity.living.*;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.Event;
@@ -67,14 +71,14 @@ public class RuntimeEvents
             }
         }
     }
-    
+
     @SubscribeEvent
     public static void fireworkReadySound(LivingEvent.LivingUpdateEvent event)
     {
         if (event.getEntityLiving() instanceof PlayerEntity)
         {
             PlayerEntity entity = (PlayerEntity) event.getEntityLiving();
-    
+
             if (entity.isSneaking())
             {
                 if (entity.inventory.armorInventory.get(0).getItem().equals(BAItems.ROCKET_BOOTS.get()))
@@ -133,7 +137,7 @@ public class RuntimeEvents
             }
         }
     }
-        
+
 //    @SubscribeEvent
 //    public void noTargetCate(LivingSetAttackTargetEvent event)
 //    {

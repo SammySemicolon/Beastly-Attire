@@ -1,7 +1,10 @@
 package com.sammy.beastly_attire.data;
 
+import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableSet;
 import com.mojang.datafixers.util.Pair;
+import com.sammy.beastly_attire.BeastlyAttireMod;
+import com.sammy.beastly_attire.init.BAItems;
 import net.minecraft.advancements.criterion.*;
 import net.minecraft.block.*;
 import net.minecraft.data.DataGenerator;
@@ -12,6 +15,7 @@ import net.minecraft.item.Items;
 import net.minecraft.loot.*;
 import net.minecraft.loot.conditions.*;
 import net.minecraft.loot.functions.*;
+import net.minecraft.resources.ResourcePackType;
 import net.minecraft.state.Property;
 import net.minecraft.state.properties.DoubleBlockHalf;
 import net.minecraft.state.properties.SlabType;
@@ -72,9 +76,58 @@ public class ModLootTableProvider extends LootTableProvider
         takeAll(blocks, b -> b.get() instanceof DoorBlock).forEach(b -> registerLootTable(b.get(),droppingDoor(b.get())));
     
         takeAll(blocks, b -> true).forEach(b -> registerLootTable(b.get(), dropping(b.get().asItem())));
+        addChestLootTable("inject/chests/bastion_treasure", LootTable.builder().addLootPool(
+                LootPool.builder()
+                        .name("main")
+                        .rolls(ConstantRange.of(1))
+                        .acceptCondition(RandomChance.builder(0.1F))
+                        .addEntry(itemEntry(BAItems.BLAZE_BELT.get(), 1))
+                )
+        );
+
+        addChestLootTable("inject/chests/nether_bridge", LootTable.builder().addLootPool(
+                LootPool.builder()
+                        .name("main")
+                        .rolls(ConstantRange.of(1))
+                        .acceptCondition(RandomChance.builder(0.02F))
+                        .addEntry(itemEntry(BAItems.BLAZE_BELT.get(), 1))
+                )
+        );
+
+        addChestLootTable("inject/chests/end_city_treasure", LootTable.builder().addLootPool(
+                LootPool.builder()
+                        .name("main")
+                        .rolls(ConstantRange.of(1))
+                        .acceptCondition(RandomChance.builder(0.1F))
+                        .addEntry(itemEntry(BAItems.BLAZE_BELT.get(), 1))
+                )
+        );
+        for (String biome : Arrays.asList("desert", "plains", "savanna", "snowy", "taiga")) {
+            addChestLootTable(
+                    String.format("inject/chests/village/village_%s_house", biome),
+                    LootTable.builder().addLootPool(
+                            LootPool.builder()
+                                    .name("main")
+                                    .rolls(ConstantRange.of(1))
+                                    .acceptCondition(RandomChance.builder(1F))
+                                    .addEntry(itemEntry(BAItems.MOUSTACHE.get(), 1))
+                    )
+            );
+        }
+
         return tables;
     }
-    
+
+    private void addChestLootTable(String location, LootTable.Builder lootTable) {
+        addLootTable(location, lootTable, LootParameterSets.GENERIC);
+    }
+
+    private static StandaloneLootEntry.Builder<?> itemEntry(Item item, int weight) {
+        return ItemLootEntry.builder(item).weight(weight);
+    }
+    private void addLootTable(String location, LootTable.Builder lootTable, LootParameterSet lootParameterSet) {
+        tables.add(Pair.of(() -> lootBuilder -> lootBuilder.accept(new ResourceLocation(BeastlyAttireMod.MODID, location), lootTable), lootParameterSet));
+    }
     protected static <T> T withExplosionDecay(IItemProvider item, ILootFunctionConsumer<T> function)
     {
         return (T) (!IMMUNE_TO_EXPLOSIONS.contains(item.asItem()) ? function.acceptFunction(ExplosionDecay.builder()) : function.cast());

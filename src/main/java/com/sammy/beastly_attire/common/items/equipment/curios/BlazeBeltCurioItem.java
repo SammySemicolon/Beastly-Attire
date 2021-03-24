@@ -4,9 +4,7 @@ import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 import com.sammy.beastly_attire.BeastlyAttireHelper;
 import com.sammy.beastly_attire.client.models.BlazeBeltModel;
-import com.sammy.beastly_attire.client.models.HeadphonesModel;
 import com.sammy.beastly_attire.init.Registries;
-import com.sammy.beastly_attire.systems.inventory.ContainerInventory;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.ItemRenderer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
@@ -17,17 +15,14 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.*;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.potion.EffectInstance;
-import net.minecraft.tileentity.AbstractFurnaceTileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
-import net.minecraft.util.Util;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.items.ItemHandlerHelper;
 import top.theillusivec4.curios.api.type.capability.ICurio;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class BlazeBeltCurioItem extends Item implements ICurio

@@ -1,4 +1,5 @@
 {
+  "effect.beastly_attire.blazing": "Blazing",
   "item.beastly_attire.alien_headband": "Alien Headband",
   "item.beastly_attire.blaze_belt": "Blaze Belt",
   "item.beastly_attire.body_strap": "Body Strap",
@@ -8,7 +9,6 @@
   "item.beastly_attire.elf_ears": "Elf Ears",
   "item.beastly_attire.flower_crown": "Flower Crown",
   "item.beastly_attire.gold_chain": "Gold Chain",
-  "item.beastly_attire.hair_flower": "Hair Flower",
   "item.beastly_attire.head_flower": "Head Flower",
   "item.beastly_attire.headphones": "Headphones",
   "item.beastly_attire.mask": "Mask",
@@ -16,9 +16,7 @@
   "item.beastly_attire.pacc": "Pacc",
   "item.beastly_attire.rocket_boots": "Rocket Boots",
   "item.beastly_attire.skull_shoulder": "Skull Shoulder",
-  "item.beastly_attire.test_item": "Test Item",
   "item.beastly_attire.wizard_hat": "Wizard Hat",
-  "item.beastly_attire.wizard_hat_again": "Wizard Hat Again",
   "item.beastly_attire.wizard_robes": "Wizard Robes",
   "itemGroup.beastly_attire": "Beastly Attire"
 }

@@ -18,6 +18,6 @@ public class ContentsTab extends ItemGroup
     @Nonnull
     @Override
     public ItemStack createIcon() {
-        return new ItemStack(BAItems.TEST_ITEM.get());
+        return new ItemStack(BAItems.PACC.get());
     }
 }

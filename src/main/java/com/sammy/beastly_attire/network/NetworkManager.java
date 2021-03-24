@@ -3,6 +3,8 @@ package com.sammy.beastly_attire.network;
 import com.sammy.beastly_attire.BeastlyAttireHelper;
 import com.sammy.beastly_attire.BeastlyAttireMod;
 import com.sammy.beastly_attire.network.packets.BodyStrapPacket;
+import com.sammy.beastly_attire.network.packets.CPacketScrollCopy;
+import com.sammy.beastly_attire.network.packets.SPacketScrollCopy;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -22,6 +24,8 @@ public class NetworkManager
     {
         int index = 0;
         INSTANCE.registerMessage(index++, BodyStrapPacket.class, BodyStrapPacket::encode, BodyStrapPacket::decode, BodyStrapPacket::whenThisPacketIsReceived);
+        INSTANCE.registerMessage(index++, CPacketScrollCopy.class, CPacketScrollCopy::encode, CPacketScrollCopy::decode, CPacketScrollCopy::whenThisPacketIsReceived);
+        INSTANCE.registerMessage(index++, SPacketScrollCopy.class, SPacketScrollCopy::encode, SPacketScrollCopy::decode, SPacketScrollCopy::whenThisPacketIsReceived);
         
     }
 }

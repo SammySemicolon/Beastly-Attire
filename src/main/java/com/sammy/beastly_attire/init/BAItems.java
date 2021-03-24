@@ -29,7 +29,6 @@ public class BAItems
         return new Item.Properties().group(ContentsTab.INSTANCE).maxStackSize(1);
     }
     
-    public static final RegistryObject<Item> TEST_ITEM = ITEMS.register("test_item", () -> new SimpleCurioItem(GEAR_PROPERTIES()));
     public static final RegistryObject<Item> CAT_EARS = ITEMS.register("cat_ears", () -> new CatEarsCurioItem(GEAR_PROPERTIES()));
     public static final RegistryObject<Item> ELF_EARS = ITEMS.register("elf_ears", () -> new ElfEarsCurioItem(GEAR_PROPERTIES()));
     public static final RegistryObject<Item> CLAWS = ITEMS.register("claws", () -> new ClawsCurioItem(GEAR_PROPERTIES()));
@@ -42,7 +41,6 @@ public class BAItems
     public static final RegistryObject<Item> MOUSTACHE = ITEMS.register("moustache", () -> new MoustacheCurioItem(GEAR_PROPERTIES()));
     public static final RegistryObject<Item> BUNNY_EARS = ITEMS.register("bunny_ears", () -> new BunnyEarsCurioItem(GEAR_PROPERTIES()));
     public static final RegistryObject<Item> MASK = ITEMS.register("mask", () -> new MaskCurioItem(GEAR_PROPERTIES()));
-    public static final RegistryObject<Item> HAIR_FLOWER = ITEMS.register("hair_flower", () -> new HairFlowerCurioItem(GEAR_PROPERTIES()));
     public static final RegistryObject<Item> HEAD_FLOWER = ITEMS.register("head_flower", () -> new HeadFlowerCurioItem(GEAR_PROPERTIES()));
     public static final RegistryObject<Item> HEADPHONES = ITEMS.register("headphones", () -> new HeadphonesCurioItem(GEAR_PROPERTIES()));
     

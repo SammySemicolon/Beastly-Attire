@@ -1,5 +1,6 @@
 package com.sammy.beastly_attire.data;
 
+import com.sammy.beastly_attire.init.BAItems;
 import net.minecraft.advancements.criterion.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -11,6 +12,7 @@ import net.minecraft.tags.ITag;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.registry.Registry;
+import net.minecraftforge.common.Tags;
 
 import java.util.function.Consumer;
 
@@ -34,7 +36,25 @@ public class ModRecipeProvider extends RecipeProvider
     @Override
     protected void registerRecipes(Consumer<IFinishedRecipe> consumer)
     {
-    
+        shapedRecipe(BAItems.PACC.get()).key('#', Tags.Items.ENDER_PEARLS).key('X', Tags.Items.GEMS_DIAMOND).key('Y', Tags.Items.LEATHER).key('Z', Items.GOLD_INGOT).key('W', Items.PURPLE_DYE).patternLine("WZW").patternLine("Y#Y").patternLine("WXW").addCriterion("has_ender_pearl", hasItem(Tags.Items.ENDER_PEARLS)).build(consumer);
+        shapedRecipe(BAItems.MOUSTACHE.get()).key('#', Tags.Items.DYES_BROWN).patternLine(" # ").patternLine("# #").addCriterion("has_brown_dye", hasItem(Tags.Items.DYES_BROWN)).build(consumer);
+        shapedRecipe(BAItems.ALIEN_HEADBAND.get()).key('#', Tags.Items.SLIMEBALLS).key('X', Tags.Items.RODS_WOODEN).key('Y', Tags.Items.STRING).patternLine("# #").patternLine("X X").patternLine(" Y ").addCriterion("has_slime_ball", hasItem(Tags.Items.SLIMEBALLS)).build(consumer);
+        shapedRecipe(BAItems.BLAZE_BELT.get()).key('#', Tags.Items.INGOTS_NETHERITE).key('X', Items.BASALT).key('Y', Tags.Items.RODS_BLAZE).patternLine("#Y#").patternLine("XXX").addCriterion("has_netherite", hasItem(Tags.Items.INGOTS_NETHERITE)).build(consumer);
+        shapedRecipe(BAItems.WIZARD_HAT.get()).key('#', Tags.Items.DYES_RED).key('X', Tags.Items.INGOTS_GOLD).key('Y', Tags.Items.GEMS_LAPIS).key('Z', Items.GOLDEN_HELMET).patternLine(" # ").patternLine("#X#").patternLine("YZY").addCriterion("has_gold", hasItem(Tags.Items.INGOTS_GOLD)).build(consumer);
+        shapedRecipe(BAItems.WIZARD_ROBES.get()).key('#', Tags.Items.DYES_RED).key('X', Tags.Items.INGOTS_GOLD).key('Y', Tags.Items.GEMS_LAPIS).key('Z', Items.GOLDEN_CHESTPLATE).patternLine("# #").patternLine("XZX").patternLine("Y Y").addCriterion("has_gold", hasItem(Tags.Items.INGOTS_GOLD)).build(consumer);
+        shapedRecipe(BAItems.CAT_EARS.get()).key('#', Tags.Items.STRING).key('X', Tags.Items.LEATHER).key('Y', ItemTags.FISHES).patternLine("#Y#").patternLine("X#X").addCriterion("has_fish", hasItem(ItemTags.FISHES)).build(consumer);
+        shapedRecipe(BAItems.ELF_EARS.get()).key('#', Tags.Items.STRING).key('X', Tags.Items.LEATHER).patternLine(" X").patternLine("# ").addCriterion("has_leather", hasItem(Tags.Items.LEATHER)).build(consumer);
+        shapedRecipe(BAItems.CLAWS.get()).key('#', Tags.Items.LEATHER).key('X', Tags.Items.INGOTS_IRON).key('Y', Tags.Items.NUGGETS_IRON).patternLine(" # ").patternLine("XXX").patternLine("YYY").addCriterion("has_iron_ingot", hasItem(Tags.Items.INGOTS_IRON)).build(consumer);
+        shapedRecipe(BAItems.SKULL_SHOULDER.get()).key('#', Tags.Items.INGOTS_IRON).key('X', Items.SKELETON_SKULL).patternLine("X#X").addCriterion("has_iron_ingot", hasItem(Tags.Items.INGOTS_IRON)).build(consumer);
+        shapedRecipe(BAItems.BODY_STRAP.get()).key('#', Tags.Items.LEATHER).key('X', Tags.Items.CHESTS_WOODEN).key('Y', Items.RABBIT_HIDE).patternLine(" YX").patternLine("Y#Y").patternLine("XY ").addCriterion("has_rabbit_hide", hasItem(Items.RABBIT_HIDE)).build(consumer);
+        shapedRecipe(BAItems.BUNNY_EARS.get()).key('#', Items.RABBIT_HIDE).key('X', Items.WHITE_WOOL).patternLine("X X").patternLine("# #").addCriterion("has_rabbit_hide", hasItem(Items.RABBIT_HIDE)).build(consumer);
+        shapedRecipe(BAItems.ROCKET_BOOTS.get()).key('#', Tags.Items.LEATHER).key('X', Items.LEATHER_BOOTS).key('Y', Tags.Items.NUGGETS_GOLD).key('Z', Items.FIREWORK_ROCKET).patternLine("#Y#").patternLine("ZXZ").addCriterion("has_fireworks", hasItem(Items.FIREWORK_ROCKET)).build(consumer);
+        shapedRecipe(BAItems.GOLD_CHAIN.get()).key('#', Items.CHAIN).key('X', Tags.Items.NUGGETS_GOLD).patternLine(" X ").patternLine("X#X").patternLine(" X ").addCriterion("has_gold", hasItem(Tags.Items.NUGGETS_GOLD)).build(consumer);
+        shapedRecipe(BAItems.MASK.get()).key('#', Items.PAPER).key('X', Tags.Items.STRING).key('Y', Items.MILK_BUCKET).patternLine(" X ").patternLine("XYX").patternLine("###").addCriterion("has_milk_bucket", hasItem(Items.MILK_BUCKET)).build(consumer);
+        shapedRecipe(BAItems.HEADPHONES.get()).key('#', Items.JUKEBOX).key('X', Tags.Items.DUSTS_REDSTONE).key('Y', Tags.Items.INGOTS_IRON).patternLine("Y#Y").patternLine("X X").patternLine("Y Y").addCriterion("has_jukebox", hasItem(Items.JUKEBOX)).build(consumer);
+        shapedRecipe(BAItems.HEAD_FLOWER.get()).key('#', ItemTags.FLOWERS).key('X', Items.LEATHER_HELMET).patternLine("#").patternLine("X").addCriterion("has_leather_helmet", hasItem(Items.LEATHER_HELMET)).build(consumer);
+        shapedRecipe(BAItems.FLOWER_CROWN.get()).key('#', ItemTags.FLOWERS).key('X', ItemTags.LEAVES).patternLine(" # ").patternLine("#X#").patternLine(" # ").addCriterion("has_leather_helmet", hasItem(Items.LEATHER_HELMET)).build(consumer);
+
     }
     private static void smithingReinforce(Consumer<IFinishedRecipe> recipeConsumer, Item itemToReinforce, Item output)
     {

@@ -3,6 +3,7 @@ package com.sammy.beastly_attire.common.items.equipment.curios;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 import com.sammy.beastly_attire.BeastlyAttireHelper;
+import com.sammy.beastly_attire.client.models.AltClawsModel;
 import com.sammy.beastly_attire.client.models.BlazeBeltModel;
 import com.sammy.beastly_attire.client.models.ClawsModel;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
@@ -27,6 +28,7 @@ public class ClawsCurioItem extends Item implements ICurio
     
     public final ResourceLocation texture = BeastlyAttireHelper.prefix("textures/armor/claws.png");
     public ClawsModel<LivingEntity> model;
+    public AltClawsModel<LivingEntity> altModel;
     
     @Override
     public ICapabilityProvider initCapabilities(ItemStack stack, CompoundNBT unused)
@@ -49,15 +51,30 @@ public class ClawsCurioItem extends Item implements ICurio
             public void render(String identifier, int index, MatrixStack matrixStack, IRenderTypeBuffer renderTypeBuffer, int light, LivingEntity livingEntity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch)
             {
                 matrixStack.push();
-                if (model == null)
+                if (index % 2 == 0)
                 {
-                    model = new ClawsModel<>();
+                    if (altModel == null)
+                    {
+                        altModel = new AltClawsModel<>();
+                    }
+                    altModel.setLivingAnimations(livingEntity, limbSwing, limbSwingAmount, partialTicks);
+                    altModel.setRotationAngles(livingEntity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
+                    ICurio.RenderHelper.followBodyRotations(livingEntity, altModel);
+                    IVertexBuilder bucketBuilder = ItemRenderer.getBuffer(renderTypeBuffer, altModel.getRenderType(texture), false, stack.hasEffect());
+                    altModel.render(matrixStack, bucketBuilder, light, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
                 }
-                model.setLivingAnimations(livingEntity, limbSwing, limbSwingAmount, partialTicks);
-                model.setRotationAngles(livingEntity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
-                ICurio.RenderHelper.followBodyRotations(livingEntity, model);
-                IVertexBuilder bucketBuilder = ItemRenderer.getBuffer(renderTypeBuffer, model.getRenderType(texture), false, stack.hasEffect());
-                model.render(matrixStack, bucketBuilder, light, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
+                else
+                {
+                    if (model == null)
+                    {
+                        model = new ClawsModel<>();
+                    }
+                    model.setLivingAnimations(livingEntity, limbSwing, limbSwingAmount, partialTicks);
+                    model.setRotationAngles(livingEntity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
+                    ICurio.RenderHelper.followBodyRotations(livingEntity, model);
+                    IVertexBuilder bucketBuilder = ItemRenderer.getBuffer(renderTypeBuffer, model.getRenderType(texture), false, stack.hasEffect());
+                    model.render(matrixStack, bucketBuilder, light, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
+                }
                 matrixStack.pop();
             }
     

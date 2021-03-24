@@ -1,5 +1,6 @@
 package com.sammy.beastly_attire.common.items.equipment;
 
+import com.sammy.beastly_attire.BeastlyAttireHelper;
 import com.sammy.beastly_attire.client.gui.PaccContainer;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -25,7 +26,7 @@ public class PACCItem extends Item
     @Override
     public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, @Nonnull Hand hand)
     {
-        if (!world.isRemote)
+        if (BeastlyAttireHelper.areWeOnServer(world))
         {
             ItemStack stack = player.getHeldItem(hand);
             INamedContainerProvider container = new SimpleNamedContainerProvider((w, p, pl) -> new PaccContainer(w, p, stack), stack.getDisplayName());
@@ -33,4 +34,5 @@ public class PACCItem extends Item
         }
         return ActionResult.resultSuccess(player.getHeldItem(hand));
     }
+
 }

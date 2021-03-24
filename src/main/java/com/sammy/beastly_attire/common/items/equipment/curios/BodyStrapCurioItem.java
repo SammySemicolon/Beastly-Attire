@@ -3,12 +3,10 @@ package com.sammy.beastly_attire.common.items.equipment.curios;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 import com.sammy.beastly_attire.BeastlyAttireHelper;
-import com.sammy.beastly_attire.client.models.BlazeBeltModel;
 import com.sammy.beastly_attire.client.models.BodyStrapModel;
-import com.sammy.beastly_attire.init.Registries;
+import com.sammy.beastly_attire.init.ClientRegistries;
 import com.sammy.beastly_attire.network.NetworkManager;
 import com.sammy.beastly_attire.network.packets.BodyStrapPacket;
-import com.sammy.beastly_attire.systems.inventory.ItemInventory;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.ItemRenderer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
@@ -17,15 +15,12 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.fml.network.PacketDistributor;
 import top.theillusivec4.curios.api.type.capability.ICurio;
-
-import java.util.ArrayList;
 
 public class BodyStrapCurioItem extends Item implements ICurio
 {
@@ -70,11 +65,11 @@ public class BodyStrapCurioItem extends Item implements ICurio
             @Override
             public void curioTick(String identifier, int index, LivingEntity livingEntity)
             {
-                if (livingEntity instanceof PlayerEntity)
-                {
-                    if (Registries.bodyStrapKeybind.isPressed())
-                    {
-                        NetworkManager.INSTANCE.send(PacketDistributor.SERVER.noArg(), new BodyStrapPacket(livingEntity.getUniqueID()));
+                if (BeastlyAttireHelper.areWeOnClient(livingEntity.world)) {
+                    if (livingEntity instanceof PlayerEntity) {
+                        if (ClientRegistries.BODY_STRAP_KEYBIND.isPressed()) {
+                            NetworkManager.INSTANCE.send(PacketDistributor.SERVER.noArg(), new BodyStrapPacket(livingEntity.getUniqueID()));
+                        }
                     }
                 }
             }

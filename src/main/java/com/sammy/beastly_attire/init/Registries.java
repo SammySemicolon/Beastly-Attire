@@ -30,7 +30,6 @@ import static com.sammy.beastly_attire.BeastlyAttireMod.MODID;
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD, modid = MODID)
 public class Registries
 {
-    //temporary class, disregard.
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, MODID);
     public static final DeferredRegister<TileEntityType<?>> TILE_ENTITIES = DeferredRegister.create(ForgeRegistries.TILE_ENTITIES, MODID);
     public static final DeferredRegister<Enchantment> ENCHANTMENTS = DeferredRegister.create(ForgeRegistries.ENCHANTMENTS, MODID);
@@ -43,14 +42,5 @@ public class Registries
     public static final RegistryObject<ContainerType<PaccContainer>> PACC_CONTAINER = CONTAINERS.register("pacc_contanier", () -> IForgeContainerType.create(PaccContainer::makeContainer));
     
     public static final RegistryObject<Effect> BLAZE_BELT_SPEED = EFFECTS.register("blazing", BlazeBeltSpeedEffect::new);
-    
-    public static final KeyBinding bodyStrapKeybind = new KeyBinding("key.body_strap", GLFW.GLFW_KEY_P,       "key.categories.misc");
-    
-    @SubscribeEvent
-    public static void registerScreenFactory(FMLClientSetupEvent event)
-    {
-        DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
-            ScreenManager.registerFactory(PACC_CONTAINER.get(), PaccGui::new);
-        });
-    }
+
 }

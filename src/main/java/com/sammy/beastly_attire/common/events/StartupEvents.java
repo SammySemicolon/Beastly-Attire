@@ -1,6 +1,6 @@
 package com.sammy.beastly_attire.common.events;
 
-import com.sammy.beastly_attire.init.Registries;
+import com.sammy.beastly_attire.init.ClientRegistries;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
@@ -16,7 +16,7 @@ public class StartupEvents
     @SubscribeEvent
     public static void registerKeybind(FMLClientSetupEvent event)
     {
-        ClientRegistry.registerKeyBinding(Registries.bodyStrapKeybind);
+        ClientRegistry.registerKeyBinding(ClientRegistries.BODY_STRAP_KEYBIND);
         
     }
     @SubscribeEvent
@@ -25,7 +25,7 @@ public class StartupEvents
         InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE, () -> new SlotTypeMessage.Builder("head").size(3).cosmetic().build());
         InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE, () -> new SlotTypeMessage.Builder("back").size(1).cosmetic().build());
         InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE, () -> new SlotTypeMessage.Builder("charm").size(1).cosmetic().build());
-        InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE, () -> new SlotTypeMessage.Builder("hands").size(1).cosmetic().build());
+        InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE, () -> new SlotTypeMessage.Builder("hands").size(2).cosmetic().build());
         InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE, () -> new SlotTypeMessage.Builder("belt").size(1).cosmetic().build());
         InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE, () -> new SlotTypeMessage.Builder("necklace").size(1).cosmetic().build());
     }

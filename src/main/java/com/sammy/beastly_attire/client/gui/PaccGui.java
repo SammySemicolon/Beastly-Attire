@@ -20,7 +20,6 @@ import net.minecraft.client.util.InputMappings;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.Tuple;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
@@ -28,7 +27,6 @@ import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.fml.network.PacketDistributor;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.type.capability.ICuriosItemHandler;
-import top.theillusivec4.curios.client.CuriosClientConfig;
 import top.theillusivec4.curios.client.KeyRegistry;
 import top.theillusivec4.curios.client.gui.RenderButton;
 import top.theillusivec4.curios.common.inventory.CosmeticCurioSlot;
@@ -37,7 +35,6 @@ import top.theillusivec4.curios.common.network.NetworkHandler;
 import top.theillusivec4.curios.common.network.client.CPacketToggleRender;
 
 import javax.annotation.Nonnull;
-import java.util.Iterator;
 
 public class PaccGui extends ContainerScreen<PaccContainer>
 {
@@ -134,33 +131,31 @@ public class PaccGui extends ContainerScreen<PaccContainer>
 	public void render(@Nonnull MatrixStack matrixStack, int mouseX, int mouseY, float partialTicks)
 	{
 		this.renderBackground(matrixStack);
-		if (!this.widthTooNarrow)
+		
+		super.render(matrixStack, mouseX, mouseY, partialTicks);
+		boolean isButtonHovered = false;
+		
+		for (Widget button : this.buttons)
 		{
-			super.render(matrixStack, mouseX, mouseY, partialTicks);
-			boolean isButtonHovered = false;
-			
-			for (Widget button : this.buttons)
+			if (button instanceof RenderButton)
 			{
-				if (button instanceof RenderButton)
+				((RenderButton) button).renderButtonOverlay(matrixStack, mouseX, mouseY, partialTicks);
+				if (button.isHovered())
 				{
-					((RenderButton) button).renderButtonOverlay(matrixStack, mouseX, mouseY, partialTicks);
-					if (button.isHovered())
-					{
-						isButtonHovered = true;
-					}
+					isButtonHovered = true;
 				}
 			}
-			
-			this.isRenderButtonHovered = isButtonHovered;
-			ClientPlayerEntity clientPlayer = Minecraft.getInstance().player;
-			if (!this.isRenderButtonHovered && clientPlayer != null && clientPlayer.inventory.getItemStack().isEmpty() && this.getSlotUnderMouse() != null)
+		}
+		
+		this.isRenderButtonHovered = isButtonHovered;
+		ClientPlayerEntity clientPlayer = Minecraft.getInstance().player;
+		if (!this.isRenderButtonHovered && clientPlayer != null && clientPlayer.inventory.getItemStack().isEmpty() && this.getSlotUnderMouse() != null)
+		{
+			Slot slot = this.getSlotUnderMouse();
+			if (slot instanceof CurioSlot && !slot.getHasStack())
 			{
-				Slot slot = this.getSlotUnderMouse();
-				if (slot instanceof CurioSlot && !slot.getHasStack())
-				{
-					CurioSlot slotCurio = (CurioSlot) slot;
-					this.renderTooltip(matrixStack, new StringTextComponent(slotCurio.getSlotName()), mouseX, mouseY);
-				}
+				CurioSlot slotCurio = (CurioSlot) slot;
+				this.renderTooltip(matrixStack, new StringTextComponent(slotCurio.getSlotName()), mouseX, mouseY);
 			}
 		}
 		this.renderHoveredTooltip(matrixStack, mouseX, mouseY);
