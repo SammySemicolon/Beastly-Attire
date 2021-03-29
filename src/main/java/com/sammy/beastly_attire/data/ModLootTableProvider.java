@@ -82,6 +82,7 @@ public class ModLootTableProvider extends LootTableProvider
                         .rolls(ConstantRange.of(1))
                         .acceptCondition(RandomChance.builder(0.1F))
                         .addEntry(itemEntry(BAItems.BLAZE_BELT.get(), 1))
+                        .addEntry(itemEntry(BAItems.GOLD_CHAIN.get(), 1))
                 )
         );
 
@@ -89,8 +90,21 @@ public class ModLootTableProvider extends LootTableProvider
                 LootPool.builder()
                         .name("main")
                         .rolls(ConstantRange.of(1))
-                        .acceptCondition(RandomChance.builder(0.02F))
+                        .acceptCondition(RandomChance.builder(0.2F))
                         .addEntry(itemEntry(BAItems.BLAZE_BELT.get(), 1))
+                        .addEntry(itemEntry(BAItems.GOLD_CHAIN.get(), 1))
+                        .addEntry(itemEntry(BAItems.SKULL_SHOULDER.get(), 6))
+                )
+        );
+
+        addChestLootTable("inject/chests/ruined_portal", LootTable.builder().addLootPool(
+                LootPool.builder()
+                        .name("main")
+                        .rolls(ConstantRange.of(1))
+                        .acceptCondition(RandomChance.builder(0.2F))
+                        .addEntry(itemEntry(BAItems.SKULL_SHOULDER.get(), 1))
+                        .addEntry(itemEntry(BAItems.ROCKET_BOOTS.get(), 1))
+                        .addEntry(itemEntry(BAItems.GOLD_CHAIN.get(), 1))
                 )
         );
 
@@ -98,7 +112,7 @@ public class ModLootTableProvider extends LootTableProvider
                 LootPool.builder()
                         .name("main")
                         .rolls(ConstantRange.of(1))
-                        .acceptCondition(RandomChance.builder(0.1F))
+                        .acceptCondition(RandomChance.builder(0.2F))
                         .addEntry(itemEntry(BAItems.BLAZE_BELT.get(), 1))
                 )
         );
@@ -109,12 +123,81 @@ public class ModLootTableProvider extends LootTableProvider
                             LootPool.builder()
                                     .name("main")
                                     .rolls(ConstantRange.of(1))
-                                    .acceptCondition(RandomChance.builder(1F))
-                                    .addEntry(itemEntry(BAItems.MOUSTACHE.get(), 1))
+                                    .acceptCondition(RandomChance.builder(0.5f))
+                                    .addEntry(itemEntry(BAItems.MOUSTACHE.get(), 3))
+                                    .addEntry(itemEntry(BAItems.CAT_EARS.get(), 3))
+                                    .addEntry(itemEntry(BAItems.ELF_EARS.get(), 3))
+                                    .addEntry(itemEntry(BAItems.CLAWS.get(), 3))
+                                    .addEntry(itemEntry(BAItems.BODY_STRAP.get(), 3))
+                                    .addEntry(itemEntry(BAItems.BUNNY_EARS.get(), 3))
+                                    .addEntry(itemEntry(BAItems.MASK.get(), 1))
+                                    .addEntry(itemEntry(BAItems.HEADPHONES.get(), 1))
                     )
             );
         }
 
+        addChestLootTable("inject/chests/abandoned_mineshaft", LootTable.builder().addLootPool(
+                LootPool.builder()
+                        .name("main")
+                        .rolls(ConstantRange.of(1))
+                        .acceptCondition(RandomChance.builder(0.2F))
+                        .addEntry(itemEntry(BAItems.WIZARD_HAT.get(), 1))
+                        .addEntry(itemEntry(BAItems.WIZARD_ROBES.get(), 1))
+                        .addEntry(itemEntry(BAItems.SKULL_SHOULDER.get(), 1))
+                        .addEntry(itemEntry(BAItems.BODY_STRAP.get(), 1))
+                )
+        );
+        addChestLootTable("inject/chests/desert_pyramid", LootTable.builder().addLootPool(
+                LootPool.builder()
+                        .name("main")
+                        .rolls(ConstantRange.of(1))
+                        .acceptCondition(RandomChance.builder(0.2F))
+                        .addEntry(itemEntry(BAItems.SKULL_SHOULDER.get(), 1))
+                        .addEntry(itemEntry(BAItems.BODY_STRAP.get(), 1))
+                )
+        );
+        addChestLootTable("inject/chests/jungle_temple", LootTable.builder().addLootPool(
+                LootPool.builder()
+                        .name("main")
+                        .rolls(ConstantRange.of(1))
+                        .acceptCondition(RandomChance.builder(0.2F))
+                        .addEntry(itemEntry(BAItems.BODY_STRAP.get(), 1))
+                )
+        );
+        addChestLootTable("inject/chests/stronghold_corridor", LootTable.builder().addLootPool(
+                LootPool.builder()
+                        .name("main")
+                        .rolls(ConstantRange.of(1))
+                        .acceptCondition(RandomChance.builder(0.2F))
+                        .addEntry(itemEntry(BAItems.WIZARD_HAT.get(), 1))
+                        .addEntry(itemEntry(BAItems.WIZARD_ROBES.get(), 1))
+                        .addEntry(itemEntry(BAItems.BODY_STRAP.get(), 1))
+                        .addEntry(itemEntry(BAItems.ROCKET_BOOTS.get(), 1))
+                        .addEntry(itemEntry(BAItems.GOLD_CHAIN.get(), 1))
+                        .addEntry(itemEntry(BAItems.HEAD_FLOWER.get(), 1))
+                        .addEntry(itemEntry(BAItems.FLOWER_CROWN.get(), 1))
+                )
+        );
+        addChestLootTable("inject/chests/spawn_bonus_chest", LootTable.builder().addLootPool(
+                LootPool.builder()
+                        .name("main")
+                        .rolls(ConstantRange.of(1))
+                        .acceptCondition(RandomChance.builder(0.1F))
+                        .addEntry(itemEntry(BAItems.ROCKET_BOOTS.get(), 1))
+                )
+        );
+        addChestLootTable("inject/chests/woodland_mansion", LootTable.builder().addLootPool(
+                LootPool.builder()
+                        .name("main")
+                        .rolls(ConstantRange.of(1))
+                        .acceptCondition(RandomChance.builder(0.2F))
+                        .addEntry(itemEntry(BAItems.WIZARD_HAT.get(), 1))
+                        .addEntry(itemEntry(BAItems.WIZARD_ROBES.get(), 1))
+                        .addEntry(itemEntry(BAItems.ROCKET_BOOTS.get(), 1))
+                        .addEntry(itemEntry(BAItems.HEAD_FLOWER.get(), 1))
+                        .addEntry(itemEntry(BAItems.FLOWER_CROWN.get(), 1))
+                )
+        );
         return tables;
     }
 

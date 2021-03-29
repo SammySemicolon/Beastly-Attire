@@ -62,7 +62,7 @@ public class RuntimeEvents
                 {
                     if (!entity.getCooldownTracker().hasCooldown(BAItems.ROCKET_BOOTS.get()))
                     {
-                        entity.addVelocity(0, 0.4f, 0);
+                        entity.addVelocity(0, 1f, 0);
                         entity.world.playSound(null, entity.getPosition(), SoundEvents.ENTITY_FIREWORK_ROCKET_LARGE_BLAST, SoundCategory.PLAYERS, 1, 1);
                         entity.world.playSound(null, entity.getPosition(), SoundEvents.ENTITY_GENERIC_EXPLODE, SoundCategory.PLAYERS, 1, 1);
                         entity.getCooldownTracker().setCooldown(BAItems.ROCKET_BOOTS.get(), 100);
